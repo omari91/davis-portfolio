@@ -15,6 +15,7 @@ import {
   CheckCircle2
 } from 'lucide-react';
 
+// Path to your profile image (matches your folder name 'assests')
 const profileImage = "/assests/1000075236.jpg";
 
 export default function App() {
@@ -35,16 +36,17 @@ export default function App() {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
       setActiveSection(id);
-      setIsMenuOpen(false);
+      setIsMenuOpen(false); // Close mobile menu on click
     }
   };
 
-  const NavLink = ({ id, label }) => (
+  // NavLink component for consistent styling and behavior
+  const NavLink = ({ id, label, isMobile = false }) => (
     <button
       onClick={() => scrollToSection(id)}
       className={`text-sm font-medium transition-colors hover:text-blue-600 ${
         activeSection === id ? 'text-blue-700 font-semibold' : 'text-gray-600'
-      }`}
+      } ${isMobile ? 'block w-full text-left py-2 text-lg' : ''}`}
     >
       {label}
     </button>
@@ -59,8 +61,8 @@ export default function App() {
         }`}
       >
         <div className="container mx-auto px-6 flex justify-between items-center">
-          <div className="text-2xl font-bold text-slate-900 tracking-tight">
-            DAVIS<span className="text-blue-600">.</span>
+          <div className="text-2xl font-bold text-slate-900 tracking-tight z-50">
+            DAVIS<span className="text-blue-600">N.</span>
           </div>
           
           {/* Desktop Nav */}
@@ -74,29 +76,48 @@ export default function App() {
 
           {/* Mobile Menu Button */}
           <button 
-            className="md:hidden p-2 text-slate-600"
+            className="md:hidden p-2 text-slate-600 z-50 focus:outline-none"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
 
-        {/* Mobile Nav */}
-        {isMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-lg py-4 px-6 flex flex-col space-y-4">
-            <NavLink id="home" label="Home" />
-            <NavLink id="about" label="My Journey" />
-            <NavLink id="experience" label="Experience" />
-            <NavLink id="values" label="Values" />
-            <NavLink id="vision" label="Future Vision" />
+        {/* Mobile Nav Overlay */}
+        <div 
+          className={`fixed inset-0 bg-white/95 backdrop-blur-sm z-40 md:hidden transition-transform duration-300 ease-in-out ${
+            isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
+          style={{ top: '0', paddingTop: '80px' }}
+        >
+          <div className="flex flex-col space-y-6 px-8 text-center">
+            <NavLink id="home" label="Home" isMobile={true} />
+            <NavLink id="about" label="My Journey" isMobile={true} />
+            <NavLink id="experience" label="Experience" isMobile={true} />
+            <NavLink id="values" label="Values" isMobile={true} />
+            <NavLink id="vision" label="Future Vision" isMobile={true} />
+            <button 
+                onClick={() => scrollToSection('contact')}
+                className="mt-4 px-6 py-3 bg-blue-700 text-white rounded-lg font-semibold hover:bg-blue-800 transition-colors w-full"
+              >
+                Let's Connect
+            </button>
           </div>
-        )}
+        </div>
       </nav>
 
-      {/* Hero Section */}
-      <section id="home" className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden">
-        <div className="absolute top-0 right-0 -z-10 w-1/2 h-full bg-blue-50/50 rounded-bl-[100px] opacity-60"></div>
-        <div className="container mx-auto px-6">
+{/* Hero Section */}
+      <section 
+        id="home" 
+        className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden bg-cover bg-center"
+        // CORRECTED PATH: Note the .png extension and /assests/ spelling to match your folder
+        style={{ backgroundImage: "url('/assests/hero-bg.png')" }} 
+      >
+        {/* Dark Overlay to make text readable */}
+        <div className="absolute inset-0 bg-white/10"></div>
+        
+        <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-3xl">
             <div className="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-semibold uppercase tracking-wide mb-6">
               Corporate Sales & Account Management
@@ -105,8 +126,8 @@ export default function App() {
               Driving Growth through <br/>
               <span className="text-blue-700">Integrity & Empathy</span>
             </h1>
-            <p className="text-xl text-slate-600 mb-10 leading-relaxed max-w-2xl">
-              Building lasting client relationships rooted in trust. I combine resilience, emotional intelligence, and strategic thinking to deliver measurable business results.
+              <p className="text-xl text-slate-600 mb-10 leading-relaxed max-w-2xl font-medium">
+              <span className="font-bold text-slate-900">Building lasting client relationships rooted in trust. I combine resilience, emotional intelligence, and strategic thinking to deliver measurable business results.</span>
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button 
