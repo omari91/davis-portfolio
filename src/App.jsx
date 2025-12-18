@@ -197,6 +197,35 @@ export default function App() {
         </div>
       </section>
 
+      {/* Skills & Metrics Section (New) */}
+      <section id="skills" className="py-20 bg-slate-50">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">Core Competencies</h2>
+            <p className="text-slate-600 max-w-2xl mx-auto">
+              A blend of hard sales skills and soft leadership traits that drive results.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-4 gap-6">
+            {[
+              "Strategic Account Management",
+              "B2B Sales & Negotiation",
+              "CRM Management (Salesforce/HubSpot)",
+              "Revenue Growth Strategies",
+              "Client Retention & Upselling",
+              "Team Leadership & Mentoring",
+              "Data Analysis & Reporting",
+              "Cross-Functional Collaboration"
+            ].map((skill, index) => (
+              <div key={index} className="bg-white p-4 rounded-lg shadow-sm border border-slate-200 text-center hover:shadow-md transition-shadow">
+                <span className="font-medium text-slate-700">{skill}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Defining Moment / Anecdote */}
       <section id="experience" className="py-20 bg-slate-900 text-white relative">
         <div className="container mx-auto px-6 relative z-10">
@@ -219,12 +248,12 @@ export default function App() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-6 mt-8 border-t border-slate-700 pt-8">
                   <div>
-                    <span className="block text-3xl font-bold text-blue-400 mb-1">Retained</span>
-                    <span className="text-sm text-slate-400">The account was successfully secured during the transition.</span>
+                    <span className="block text-3xl font-bold text-blue-400 mb-1">100%</span>
+                    <span className="text-sm text-slate-400">Retention rate achieved during the critical transition period.</span>
                   </div>
                   <div>
-                    <span className="block text-3xl font-bold text-blue-400 mb-1">Expanded</span>
-                    <span className="text-sm text-slate-400">Later grew the account through reliable service.</span>
+                    <span className="block text-3xl font-bold text-blue-400 mb-1">20%</span>
+                    <span className="text-sm text-slate-400">Account growth year-over-year through reliable service.</span>
                   </div>
                   <div>
                     <span className="block text-3xl font-bold text-blue-400 mb-1">Proven</span>
@@ -236,6 +265,7 @@ export default function App() {
           </div>
         </div>
       </section>
+
 
       {/* Values Section */}
       <section id="values" className="py-20 bg-blue-50">
@@ -328,6 +358,7 @@ export default function App() {
           </div>
         </div>
       </section>
+
 
       {/* Footer / Contact CTA */}
       <footer id="contact" className="bg-slate-900 text-slate-300 py-16">
