@@ -101,21 +101,65 @@ export default function SiteLayout() {
         <Outlet />
       </main>
 
-      <footer className="bg-slate-950/95 px-6 py-16 text-center text-slate-300">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="text-3xl font-bold text-white">Let&apos;s build growth that lasts.</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-slate-400">
-            I&apos;m open to account management, corporate sales, and client success opportunities.
+      <section className="px-6 pb-8">
+        <div className="mx-auto max-w-6xl rounded-3xl border border-white/60 bg-gradient-to-r from-slate-900 to-sky-900 px-6 py-12 text-white shadow-2xl md:px-12">
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-sky-200">Ready To Collaborate</p>
+          <h2 className="mt-3 max-w-3xl text-3xl font-bold md:text-4xl">Let&apos;s grow your accounts with clarity, consistency, and trust.</h2>
+          <p className="mt-4 max-w-2xl text-slate-200">
+            Open to account management and client success roles where execution and relationships matter.
           </p>
-          <div className="mt-8 flex items-center justify-center gap-4">
-            <a href="#" className="rounded-full border border-white/30 bg-white/10 p-3 backdrop-blur-xl transition hover:bg-sky-500/25">
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <NavLink
+              to="/contact"
+              className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-100"
+            >
+              Start A Conversation
+            </NavLink>
+            <NavLink
+              to="/proof"
+              className="rounded-full border border-white/60 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+            >
+              See Results
+            </NavLink>
+          </div>
+        </div>
+      </section>
+
+      <footer className="bg-slate-950/95 px-6 py-12 text-slate-300">
+        <div className="mx-auto flex max-w-6xl flex-col gap-8 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p className="text-xl font-bold tracking-tight text-white">
+              DAVIS<span className="text-sky-400">.</span>
+            </p>
+            <p className="mt-2 text-sm text-slate-400">Built for measurable growth and long-term client trust.</p>
+          </div>
+          <div className="flex flex-wrap items-center gap-4 text-sm">
+            {navItems.map((item) => (
+              <NavLink key={item.to} to={item.to} end={item.end} className="transition hover:text-white">
+                {item.label}
+              </NavLink>
+            ))}
+          </div>
+          <div className="flex items-center gap-4">
+            <a
+              href="#"
+              aria-label="Visit LinkedIn profile"
+              className="rounded-full border border-white/30 bg-white/10 p-3 backdrop-blur-xl transition hover:bg-sky-500/25"
+            >
               <Linkedin className="h-5 w-5" />
             </a>
-            <a href="mailto:contact@davis.com" className="rounded-full border border-white/30 bg-white/10 p-3 backdrop-blur-xl transition hover:bg-sky-500/25">
+            <a
+              href="mailto:contact@davis.com"
+              aria-label="Send email"
+              className="rounded-full border border-white/30 bg-white/10 p-3 backdrop-blur-xl transition hover:bg-sky-500/25"
+            >
               <Mail className="h-5 w-5" />
             </a>
           </div>
         </div>
+        <p className="mx-auto mt-8 max-w-6xl border-t border-white/10 pt-5 text-xs text-slate-500">
+          © {new Date().getFullYear()} Davis Portfolio. All rights reserved.
+        </p>
       </footer>
     </div>
   );
